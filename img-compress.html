@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compress images online for free. Reduce image file size without losing quality. Fast, easy, and secure image compression tool.">
+    <meta name="keywords" content="image compressor, compress images, reduce image size, online image tools, free image compressor">
+    <meta name="author" content="Mahwish">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourwebsite.com/image-compressor.html" />
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Image Compressor | Free Online Image Compression Tool">
+    <meta property="og:description" content="Compress images online for free. Reduce image file size without losing quality. Fast, easy, and secure image compression tool.">
+    <meta property="og:image" content="https://yourwebsite.com/thumbnail.jpg">
+    <meta property="og:url" content="https://yourwebsite.com/image-compressor.html">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Image Compressor | Free Online Image Compression Tool">
+    <meta name="twitter:description" content="Compress images online for free. Reduce image file size without losing quality. Fast, easy, and secure image compression tool.">
+    <meta name="twitter:image" content="https://yourwebsite.com/thumbnail.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://yourwebsite.com/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Light Color Theme */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .hero-section {
+            background-color: #198754; /* Green color for image tools */
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            margin-top: 20px;
+        }
+
+        .tool-section {
+            padding: 60px 0;
+        }
+
+        .tool-card {
+            background: white;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .tool-card h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .tool-card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .tool-card .btn {
+            margin-top: 15px;
+        }
+
+        footer {
+            background-color: #e9ecef;
+            color: #6c757d;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+
+    <title>Image Compressor | Free Online Image Compression Tool</title>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Image Compressor</h1>
+            <p>Compress images online for free. Reduce image file size without losing quality.</p>
+        </div>
+    </section>
+
+    <!-- Tool Section -->
+    <section class="tool-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="tool-card">
+                        <h2>Compress Your Image</h2>
+                        <p>Upload an image to compress it and reduce its file size.</p>
+                        <input type="file" id="fileInput" class="form-control mb-3" accept="image/*">
+                        <button id="compressBtn" class="btn btn-success w-100">
+                            <i class="fas fa-compress"></i> Compress Image
+                        </button>
+                        <div id="output" class="mt-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="mb-0">© 2023 Free PDF and Image Tools. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/compressorjs@1.1.1/dist/compressor.min.js"></script>
+    <script>
+        document.getElementById('compressBtn').addEventListener('click', () => {
+            const fileInput = document.getElementById('fileInput');
+            if (fileInput.files.length === 0) {
+                alert('Please select an image file.');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            new Compressor(file, {
+                quality: 0.6,
+                success(result) {
+                    const output = document.getElementById('output');
+                    const downloadLink = URL.createObjectURL(result);
+                    output.innerHTML = `
+                        <p>Compression successful!</p>
+                        <a href="${downloadLink}" class="btn btn-success" download="compressed-image.jpg">
+                            <i class="fas fa-download"></i> Download Compressed Image
+                        </a>
+                    `;
+                },
+                error(err) {
+                    console.error(err);
+                    alert('Compression failed. Please try again.');
+                },
+            });
+        });
+    </script>
+</body>
+</html>
